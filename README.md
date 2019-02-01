@@ -18,7 +18,7 @@
 
 | Example Input| Example Output                                       |
 | :----------- | :--------------------------------------------------- |
-
+| 
 
 ## Technologies Used
 * _HTML_
