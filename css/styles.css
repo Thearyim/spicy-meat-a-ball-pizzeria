@@ -10,26 +10,13 @@ html, body {
   text-align: justify;
 }
 
-.age {
-  padding-left: 30px;
-  padding-bottom: 30px;
-}
-
-.ticketType {
-  font-size: 18pt;
-}
-
-#ageSelection {
-
-}
-
 .horizontalRule {
   border: 0.5px solid #AAAAAA;
   width: 70%;
   margin: 20px 0px 20px 0px;
 }
 
-.movieIcon {
+.pizzaImage {
   height: 170px;
 }
 
@@ -37,40 +24,8 @@ html, body {
   height: 250px;
 }
 
-.movieTitle {
-  font-size: 16pt;
-  font-weight: bold;
-}
-
-.filmDescriptionLabel {
-  font-size: 12pt;
-  font-weight: bold;
-}
-
-.btn {
-  margin-right: 20px;
-}
-
 .container {
   height: 100%;
-}
-
-.filmSchedule {
-  height: 100%;
-  /*
-  background-color: white;
-  border-radius: 5px;
-  -webkit-box-shadow: 7px -7px 7px #999999;
-  */
-}
-
-.showing {
-    margin-bottom: 40px;
-}
-
-.purchaseButtonContainer button {
-  margin-top: 50px;
-  background-color: orange;
 }
 
 div#projectName {

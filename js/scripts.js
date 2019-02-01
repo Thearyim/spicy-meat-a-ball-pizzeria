@@ -15,7 +15,6 @@ Pizzeria.prototype.buildYourOwn = function(ingredients, size) {
   return pizza;
 }
 
-
 Pizzeria.prototype.getSignaturePizzas = function() {
   var supreme = new Pizza(
     ["dough", "tomato sauce", "mozzarella", "sausage", "bell peppers", "onions", "black olives"]
@@ -23,6 +22,7 @@ Pizzeria.prototype.getSignaturePizzas = function() {
 
   supreme.name = "supreme";
   supreme.description = "A traditional pizza with tomato sauce, mozzarella, sausage, bell peppers, onions and black olives"
+  supreme.imagePath = "img/SupremePizza.png";
 
   var hawaiian = new Pizza(
     ["dough", "tomato sauce", "mozzarella", "ham", "pineapple"]
@@ -30,6 +30,7 @@ Pizzeria.prototype.getSignaturePizzas = function() {
 
   hawaiian.name = "hawaiian";
   hawaiian.description = "A traditional pizza with tomato sauce, mozzarella, ham and pineapple";
+  hawaiian.imagePath = "img/HawaiianPizza.png";
 
   var pepperoni = new Pizza(
     ["dough", "tomato sauce", "mozzarella", "pepperoni"]
@@ -37,6 +38,7 @@ Pizzeria.prototype.getSignaturePizzas = function() {
 
   pepperoni.name = "pepperoni";
   pepperoni.description = "A traditional pizza with tomato sauce, mozzarella, pepperoni";
+  pepperoni.imagePath = "img/PepperoniPizza.png";
 
   var fourCheese = new Pizza(
     "fourCheese",
@@ -46,6 +48,7 @@ Pizzeria.prototype.getSignaturePizzas = function() {
 
   fourCheese.name = "fourCheese";
   fourCheese.description = "A traditional pizza with tomato sauce, mozzarella, and our famous 3 cheese blend";
+  fourCheese.imagePath = "img/FourCheesePizza.png";
 
   var signaturePizzas = [supreme, hawaiian, pepperoni, fourCheese];
 
@@ -82,6 +85,7 @@ function Pizza(ingredients) {
   this.name;
   this.description;
   this.id;
+  this.imagePath;
 }
 
 Pizza.prototype.getIngredientsPrice = function(size) {
@@ -153,6 +157,36 @@ Pizza.prototype.isSignature = function() {
   return isSignaturePizza;
 }
 
+
+function ContentPresentation(pizzeria) {
+  this.pizzeria = pizzeria;
+}
+
+ContentPresentation.prototype.showSignaturePizzas = function() {
+  var signaturePizzas = this.pizzeria.getSignaturePizzas();
+  var contentPresentation = this;
+
+  var htmlContent = "";
+  signaturePizzas.forEach(function(pizza) {
+    htmlContent +=
+    `<div class="container" style="float: left;max-width:50%;">
+      <div class="col-sm-5" >
+          <div style="text-align:center;">${pizza.name}</div>
+          <img class="pizzaImage" src="${pizza.imagePath}" alt="A photo of a plain pizza">
+          <div style="margin-left:30%;margin-right:30%;">
+            <button id="signaturePizza:${pizza.id}" class="btn btn-success">Select</button>
+          </div>
+      </div>
+      <div class="col-sm-7" style="text-align: justify;padding-top:30px;">
+        ${pizza.description}
+      </div>
+    </div>`
+  });
+
+  $("#signaturePizzaMenu").html(htmlContent);
+  $("#signaturePizzaContainer").show();
+}
+
 function showTestData() {
   var pizzeria = new Pizzeria();
   console.log(pizzeria);
@@ -171,7 +205,9 @@ function showTestData() {
 }
 
 $(document).ready(function() {
-
+  var pizzeria = new Pizzeria();
+  var content = new ContentPresentation(pizzeria);
+  content.showSignaturePizzas();
   showTestData();
 
 
