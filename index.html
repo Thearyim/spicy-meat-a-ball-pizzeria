@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/contentPresentation.js"></script>
+    <script src="js/orderTracker.js"></script>
     <title>Spicy-Meat-a-Ball Pizzeria</title>
   </head>
   <body>
@@ -20,18 +22,20 @@
         </div>
         <div class="container pizzaContainer">
           <div id="pizzaMenuContainer" class="container">
-            <p>Build Your Own</p>
-            <div class="container">
-              <div class="col-sm-2">
-                  <img class="pizzaImage" src="img/CheesePizza.png" alt="A photo of a plain pizza">
+            <div id="container-byo">
+              <p>Build Your Own</p>
+              <div class="container">
+                <div class="col-sm-2">
+                    <img class="pizzaImage" src="img/CheesePizza.png" alt="A photo of a plain pizza">
+                </div>
+                <div class="col-sm-7">
+                  Customize your pizza du jour.  Click 'Build Your Own' to create the pizza of your
+                  choice with the toppings you like best.
+                </div>
               </div>
-              <div class="col-sm-7">
-                Customize your pizza du jour.  Click 'Build Your Own' to create the pizza of your
-                choice with the toppings you like best.
+              <div>
+                <button class="btn btn-success" type="button" name="button">Build Your Own</button>
               </div>
-            </div>
-            <div>
-              <button class="btn btn-success" type="button" name="button">Build Your Own</button>
             </div>
 
           <div id="signaturePizzaContainer" class="container">
