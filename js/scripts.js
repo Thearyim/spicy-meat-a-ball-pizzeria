@@ -162,6 +162,13 @@ function ContentPresentation(pizzeria) {
   this.pizzeria = pizzeria;
 }
 
+ContentPresentation.prototype.addEventHandlers = function(){
+  var contentPresentation = this;
+  $("#signaturePizzas button").click(function(event) {
+    contentPresentation.showPizzaCustomizationOptions();
+  });
+}
+
 ContentPresentation.prototype.showSignaturePizzas = function() {
   var signaturePizzas = this.pizzeria.getSignaturePizzas();
   var contentPresentation = this;
@@ -173,7 +180,7 @@ ContentPresentation.prototype.showSignaturePizzas = function() {
       <div class="col-sm-5" >
           <div style="text-align:center;">${pizza.name}</div>
           <img class="pizzaImage" src="${pizza.imagePath}" alt="A photo of a plain pizza">
-          <div style="margin-left:30%;margin-right:30%;">
+          <div id="signaturePizzas" style="margin-left:30%;margin-right:30%;">
             <button id="signaturePizza:${pizza.id}" class="btn btn-success">Select</button>
           </div>
       </div>
@@ -183,8 +190,27 @@ ContentPresentation.prototype.showSignaturePizzas = function() {
     </div>`
   });
 
+  $("#pizzaCustomizationContainer").hide();
+  $("#pizzaMenuContainer").show();
   $("#signaturePizzaMenu").html(htmlContent);
-  $("#signaturePizzaContainer").show();
+  this.addEventHandlers();
+}
+
+ContentPresentation.prototype.showPizzaCustomizationOptions = function() {
+  var allIngredients = this.pizzeria.ingredients;
+  var contentPresentation = this;
+
+  var htmlContent = "";
+  allIngredients.forEach(function(ingredient) {
+    htmlContent +=
+    `<div>
+        <input type="checkbox" name="ingredient-${ingredient}" value="${ingredient}"> ${ingredient}
+      </div>`
+  });
+
+  $("#pizzaIngredients").html(htmlContent);
+  $("#pizzaCustomizationContainer").show();
+  $("#pizzaMenuContainer").hide();
 }
 
 function showTestData() {
