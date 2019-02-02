@@ -12,20 +12,7 @@ html, body {
 
 .horizontalRule {
   border: 0.5px solid #AAAAAA;
-  width: 70%;
-  margin: 20px 0px 20px 0px;
-}
-
-.pizzaImage {
-  height: 170px;
-}
-
-.movieIcon2 {
-  height: 250px;
-}
-
-.container {
-  height: 100%;
+  margin: 20px 3% 20px 3%;
 }
 
 div#projectName {
@@ -36,7 +23,6 @@ div#projectName {
 
 div#projectDescription {
   text-align: center;
-  margin-bottom: 50px;
   font-size: 18pt;
   padding: 15px;
 }
@@ -53,6 +39,10 @@ div#signatureContainer {
   -webkit-box-shadow: 1px -1px 1px #999999;
 }
 
+div#signaturePizzaContainer {
+  margin-top: 20px;
+}
+
 div#contentContainer {
   min-height: calc(100% - 130px);
   overflow: visible;
@@ -60,4 +50,25 @@ div#contentContainer {
   border: 1px solid #CCCCCC;
   border-radius: 3px;
   -webkit-box-shadow: 1px -1px 1px #999999;
+}
+
+.section-title {
+  font-size: 16pt;
+  font-weight: bold;
+  color: black;
+}
+
+.img-pizza {
+  height: 170px;
+  margin: 8px;
+}
+
+.img-pizza-title {
+  font-size: 14pt;
+  color: black;
+}
+
+.btn-size {
+  width: 50px;
+  text-align: center;
 }

@@ -2,39 +2,16 @@ function ContentPresentation(pizzeria) {
   this.pizzeria = pizzeria;
 }
 
-ContentPresentation.prototype.showSignaturePizzas = function() {
-  var pizzeria = this.pizzeria;
-  var signaturePizzas = this.pizzeria.getSignaturePizzas();
+ContentPresentation.prototype.setPizzaSelectedEvents = function() {
   var orderTracker = this.pizzeria.orderTracker;
   var contentPresentation = this;
-
-  var htmlContent = "";
-  signaturePizzas.forEach(function(pizza) {
-    htmlContent +=
-    `<div class="container" style="float: left;max-width:50%;">
-      <div class="col-sm-5" >
-          <div style="text-align:center;">${pizza.name}</div>
-          <img class="pizzaImage" src="${pizza.imagePath}" alt="A photo of a plain pizza">
-          <div id="signaturePizzas" style="margin-left:30%;margin-right:30%;">
-            <button id="signaturePizza:${pizza.name}" class="btn btn-success">Select</button>
-          </div>
-      </div>
-      <div class="col-sm-7" style="text-align: justify;padding-top:30px;">
-        ${pizza.description}
-      </div>
-    </div>`
-  });
-
-  $("#pizzaCustomizationContainer").hide();
-  $("#orderSummaryContainer").hide();
-  $("#pizzaMenuContainer").show();
-  $("#signaturePizzaMenu").html(htmlContent);
-
+  
   //adding click event handler to show the pizza customization option
-  $("#container-byo div > button").click(function(event) {
-    orderTracker.addPizza(
+  $("#byoContainer div > button").click(function(event) {
+    var byoPizzaSize = $(event.target).attr("id").split(":")[2];
+    orderTracker.trackPizzaOrder(
         new Pizza(["dough", "tomato sauce", "mozzarella"]),
-        "Large"
+        byoPizzaSize
     );
 
     console.log(orderTracker);
@@ -53,6 +30,37 @@ ContentPresentation.prototype.showSignaturePizzas = function() {
     console.log(orderTracker);
     contentPresentation.showPizzaCustomizationOptions();
   });
+}
+
+ContentPresentation.prototype.showSignaturePizzas = function() {
+  var pizzeria = this.pizzeria;
+  var signaturePizzas = this.pizzeria.getSignaturePizzas();
+  var contentPresentation = this;
+
+  var htmlContent = "";
+  signaturePizzas.forEach(function(pizza) {
+    htmlContent +=
+    `<div class="container" style="float:left;min-width:300px;max-width:50%;margin-bottom:30px;border:1px solid white;">
+      <div class="col-sm-5" >
+          <div class="img-pizza-title" style="text-align:center;">${pizza.name}</div>
+          <img class="img-pizza" src="${pizza.imagePath}" alt="A photo of a plain pizza">
+          <div id="signaturePizzas" style="margin-left:5%;margin-right:5%;">
+            <button id="signaturePizza:${pizza.name}:S" class="btn-size btn btn-success">sm.</button>
+            <button id="signaturePizza:${pizza.name}:M" class="btn-size btn btn-success">med.</button>
+            <button id="signaturePizza:${pizza.name}:L" class="btn-size btn btn-success">lg.</button>
+          </div>
+      </div>
+      <div class="col-sm-6" style="text-align: justify;padding-top:30px;">
+        ${pizza.description}
+      </div>
+    </div>`
+  });
+
+  $("#pizzaCustomizationContainer").hide();
+  $("#orderSummaryContainer").hide();
+  $("#pizzaMenuContainer").show();
+  $("#signaturePizzaMenu").html(htmlContent);
+  contentPresentation.setPizzaSelectedEvents();
 }
 
 ContentPresentation.prototype.showPizzaCustomizationOptions = function() {

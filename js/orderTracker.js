@@ -2,15 +2,21 @@
 // ordered on the website.
 function OrderTracker(){
   this.pizzaOrders = [];
-  this.currentItemId = 0;
+  this.currentOrder;
+  this.currentOrderId = 0;
+}
+
+OrderTracker.prototype.saveCurrentPizzaOrder = function() {
+  this.pizzaOrders.push(this.currentOrder);
+  this.currentOrder = null;
 }
 
 // Function adds a new pizza to the order tracking.
-OrderTracker.prototype.addPizza = function(pizza, size) {
-  this.currentItemId++;
-  var newOrderItem = new OrderItem(pizza, size);
-  newOrderItem.id = this.currentItemId;
-  this.pizzaOrders.push(newOrderItem);
+OrderTracker.prototype.trackPizzaOrder = function(pizza, size) {
+  this.currentOrderId++;
+  var newOrder = new OrderItem(pizza, size);
+  newOrder.id = this.currentOrderId;
+  this.currentOrder = newOrder;
 }
 
 // OrderItem object is used to represent a single pizza ordered by the user
