@@ -41,8 +41,6 @@ Pizzeria.prototype.getSignaturePizzas = function() {
   pepperoni.imagePath = "img/PepperoniPizza.png";
 
   var fourCheese = new Pizza(
-    "fourCheese",
-    "A traditional pizza with tomato sauce, mozzarella, and our famous 3 cheese blend",
     ["dough", "tomato sauce", "mozzarella", "3 cheese"]
   );
 
@@ -162,13 +160,6 @@ function ContentPresentation(pizzeria) {
   this.pizzeria = pizzeria;
 }
 
-ContentPresentation.prototype.addEventHandlers = function(){
-  var contentPresentation = this;
-  $("#signaturePizzas button").click(function(event) {
-    contentPresentation.showPizzaCustomizationOptions();
-  });
-}
-
 ContentPresentation.prototype.showSignaturePizzas = function() {
   var signaturePizzas = this.pizzeria.getSignaturePizzas();
   var contentPresentation = this;
@@ -191,9 +182,14 @@ ContentPresentation.prototype.showSignaturePizzas = function() {
   });
 
   $("#pizzaCustomizationContainer").hide();
+  $("#orderSummaryContainer").hide();
   $("#pizzaMenuContainer").show();
   $("#signaturePizzaMenu").html(htmlContent);
-  this.addEventHandlers();
+
+  //adding click event handler to show the pizza customization option
+  $("#signaturePizzas button").click(function(event) {
+    contentPresentation.showPizzaCustomizationOptions();
+  });
 }
 
 ContentPresentation.prototype.showPizzaCustomizationOptions = function() {
@@ -205,12 +201,65 @@ ContentPresentation.prototype.showPizzaCustomizationOptions = function() {
     htmlContent +=
     `<div>
         <input type="checkbox" name="ingredient-${ingredient}" value="${ingredient}"> ${ingredient}
-      </div>`
+      </div>`;
   });
+
+  htmlContent +=
+  `<div>
+    <button class="btn btn-success" name="button">Order</button>
+  </div>`;
 
   $("#pizzaIngredients").html(htmlContent);
   $("#pizzaCustomizationContainer").show();
+  $("#orderSummaryContainer").hide();
   $("#pizzaMenuContainer").hide();
+
+  //adding click event handler to show the pizza customization option
+  $("#pizzaIngredients div > button").click(function(event) {
+    contentPresentation.showOrderSummary();
+  });
+}
+
+ContentPresentation.prototype.showOrderSummary = function() {
+  var pizzas = this.pizzeria.getSignaturePizzas();
+  var contentPresentation = this;
+
+  var htmlContent = "";
+  pizzas.forEach(function(pizza) {
+    var ingredientHtmlContent = "";
+    console.log(pizza);
+    pizza.ingredients.forEach(function(ingredient) {
+      ingredientHtmlContent += `<li>${ingredient}</li>`
+    });
+
+    htmlContent +=
+    `<p>Pizza:</p>
+      <div>
+        Type: ${pizza.name}
+      </div>
+      <div class="">
+        Size: Large
+      </div>
+      <div>
+        Toppings:
+        <div class="">
+          <ul>
+          ${ingredientHtmlContent}
+          </ul>
+        </div>
+      </div>
+      <div class="horizontalRule"></div>`;
+  });
+
+  htmlContent +=
+    `<div class="">
+      Order Total: $10.99
+    </div>`;
+
+  $("#pizzaOrder").html(htmlContent);
+  $("#pizzaMenuContainer").hide();
+  $("#pizzaCustomizationContainer").hide();
+  $("#orderSummaryContainer").show();
 }
 
 function showTestData() {
