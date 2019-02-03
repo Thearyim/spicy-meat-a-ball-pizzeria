@@ -5,7 +5,7 @@
  _**Theary Im**_  
  _**thearyim@gmail.com**_
 ## Description
-**_This is a web page for my pizzeria. You can customize you pie.. Give it a try!_**
+**_This is a web page for my pizzeria. You can customize your pie.. Give it a try!_**
 * _Customize your own pizza_
 * _Signature pizzas:_
   * _Supreme_
