@@ -5,14 +5,10 @@ html, body {
   /*background-image: linear-gradient(to right, rgba(200, 200, 200, 0.9), white);*/
   background-color: white;
   background-repeat: repeat;
-  font-family: consolas;
+  /*font-family: consolas;*/
+  font-family: 'Segoe UI';
   font-size: 12pt;
   text-align: justify;
-}
-
-.horizontalRule {
-  border: 0.5px solid #AAAAAA;
-  margin: 20px 3% 20px 3%;
 }
 
 div#projectName {
@@ -39,6 +35,10 @@ div#signatureContainer {
   -webkit-box-shadow: 1px -1px 1px #999999;
 }
 
+div#pizzaOrderContainer {
+  border-top: 1px solid grey;
+}
+
 div#signaturePizzaContainer {
   margin-top: 20px;
 }
@@ -46,16 +46,34 @@ div#signaturePizzaContainer {
 div#contentContainer {
   min-height: calc(100% - 130px);
   overflow: visible;
-  /*padding: 20px 100px 20px 100px;*/
+  /*padding: 20px 100px 20px 100px;
   border: 1px solid #CCCCCC;
   border-radius: 3px;
   -webkit-box-shadow: 1px -1px 1px #999999;
+  */
+}
+
+.horizontalRule {
+  border: 0.5px solid #AAAAAA;
+  margin: 20px 3% 20px 3%;
 }
 
 .section-title {
-  font-size: 16pt;
+  font-size: 18pt;
   font-weight: bold;
   color: black;
+}
+
+.container-pizza-byo {
+  min-width:475px;
+  margin-bottom:30px;
+}
+
+.container-pizza {
+  float:left;
+  min-width:475px;
+  max-width:50%;
+  margin-bottom:30px;
 }
 
 .img-pizza {
@@ -68,7 +86,24 @@ div#contentContainer {
   color: black;
 }
 
-.btn-size {
+.container-btn-size {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-btn-size button {
+  margin-left: 5px;
+  margin-right: 5px;
   width: 50px;
-  text-align: center;
+}
+
+.container-summary {
+  color: black;
+  min-width: 200px;
+  border-left: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
 }

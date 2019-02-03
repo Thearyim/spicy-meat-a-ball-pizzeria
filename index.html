@@ -10,7 +10,7 @@
     <title>Spicy-Meat-a-Ball Pizzeria</title>
   </head>
   <body>
-    <div class="container">
+    <div>
       <div id="signatureContainer">
         <img id="signatureImage" src="img/Signature2.png" alt="Author's Signature/Watermark">
       </div>
@@ -20,93 +20,99 @@
           <p>Eh!!! Welcome to my pizzeria!!!</p>
           <p style="text-align: justify">Spicy-Meat-a-Ball Pizzeria was founded by a team of amateur (...and sometimes good) volleyball players who love to hammer a ball and celebrate a win with a pizza pie. We run our kitchen like we run plays: quick, efficent and professional. You'll love our pies or we'll eat our shorts. That a sure-fire guarantee like a sweet shoot along the tape.</p>
         </div>
-        <div class="horizontalRule"></div>
-        <div class="container">
-          <div id="pizzaMenuContainer">
-            <div id="byoContainer" style="border:1px solid white">
-              <p class="section-title">Build Your Own</p>
+        <div id="pizzaOrderContainer">
+          <div class="col-sm-9">
+            <div id="pizzaMenuContainer">
+              <div id="byoContainer">
+                <p class="section-title">Build Your Own</p>
+                <div class="container container-pizza-byo" style="max-width:900px;margin-left:0px;">
+                  <div class="col-sm-3">
+                      <img class="img-pizza" src="img/CheesePizza.png" alt="A photo of a plain pizza">
+                      <div class="container-btn-size">
+                        <button id="byoPizza:byo:S" class="btn btn-success" type="button" name="button">sm.</button>
+                        <button id="byoPizza:byo:M" class="btn btn-success" type="button" name="button">med.</button>
+                        <button id="byoPizza:byo:L" class="btn btn-success" type="button" name="button">lg.</button>
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                    Customize your pizza du jour.  Click 'Build Your Own' to create the pizza of your
+                    choice with the toppings you like best.
+                  </div>
+                </div>
+              </div>
+              <div id="signaturePizzaContainer">
+                <p class="section-title">Signature Pizzas</p>
+                <div id="signaturePizzaMenu">
+
+                <!--
+                <div class="container" style="float: left;max-width:50%;">
+                  <div class="col-sm-5" >
+                      <div style="text-align:center;">Supreme</div>
+                      <img class="pizzaImage" src="img/cheesePizza.png" alt="A photo of a plain pizza">
+                  </div>
+                  <div class="col-sm-7" style="text-align: justify;padding-top:30px;">
+                    Customize your pizza du jour.  Click 'Build Your Own' to create the pizza of your
+                    choice with the toppings you like best.
+                  </div>
+                </div>
+                -->
+                </div>
+              </div>
+            </div>
+            <div id="pizzaCustomizationContainer">
+              <p>Customize Your Pizza</p>
               <div class="container">
-                <div class="col-sm-2">
-                    <img class="img-pizza" src="img/CheesePizza.png" alt="A photo of a plain pizza">
+                <div class="col-sm-3">
+                  <img class="img-pizza" src="img/CheesePizza.png" alt="A photo of a plain pizza">
                 </div>
-                <div class="col-sm-7">
-                  Customize your pizza du jour.  Click 'Build Your Own' to create the pizza of your
-                  choice with the toppings you like best.
+                <div class="col-sm-5">
+                  <p>Please select your toppings:</p>
+                  <p>Select the toppings below to customize your pizza just the way you like it.</p>
+                  <div>
+                    <button id="orderButton" class="btn btn-success" name="button">Order</button>
+                  </div>
                 </div>
-              </div>
-              <div style="margin-left:5%;margin-right:5%;">
-                <button id="byoPizza:byo:S" class="btn-size btn btn-success" type="button" name="button">sm.</button>
-                <button id="byoPizza:byo:M" class="btn-size btn btn-success" type="button" name="button">med.</button>
-                <button id="byoPizza:byo:L" class="btn-size btn btn-success" type="button" name="button">lg.</button>
-              </div>
-            </div>
-            <div id="signaturePizzaContainer" style="border:1px solid white;">
-              <p class="section-title">Signature Pizzas</p>
-              <div id="signaturePizzaMenu">
-
-              <!--
-              <div class="container" style="float: left;max-width:50%;">
-                <div class="col-sm-5" >
-                    <div style="text-align:center;">Supreme</div>
-                    <img class="pizzaImage" src="img/cheesePizza.png" alt="A photo of a plain pizza">
-                </div>
-                <div class="col-sm-7" style="text-align: justify;padding-top:30px;">
-                  Customize your pizza du jour.  Click 'Build Your Own' to create the pizza of your
-                  choice with the toppings you like best.
-                </div>
-              </div>
-              -->
-              </div>
-            </div>
-          </div>
-          <div id="pizzaCustomizationContainer" class="container">
-            <p>Customize Your Pizza</p>
-            <div class="container">
-              <div class="col-sm-3">
-                <img class="img-pizza" src="img/CheesePizza.png" alt="A photo of a plain pizza">
-              </div>
-              <div class="col-sm-5">
-                <p>Please select your toppings:</p>
-                <p>Select the toppings below to customize your pizza just the way you like it.</p>
-              </div>
-            </div>
-            <div class="">
-              Toppings
-            </div>
-            <div id="pizzaIngredients" class="container">
-              <!-- <div class="">
-                <input type="checkbox" name="pepperoni" value="pepperoni"> Pepperoni
               </div>
               <div class="">
-                <input type="checkbox" name="pepperoni" value="pepperoni"> Mushrooms
+                Toppings
               </div>
-            </div> -->
-
-            </div>
-          </div>
-          <div id="orderSummaryContainer" class="container">
-            <p>Order Summary</p>
-            <div id="pizzaOrder" class="container">
-              <!-- <p>Pizza: 1</p>
-              <div>
-                Type: Supreme
-              </div>
-              <div class="">
-                Size: Large
-              </div>
-              <div>
-                Toppings:
+              <div id="pizzaIngredients" class="container">
+                <!-- <div class="">
+                  <input type="checkbox" name="pepperoni" value="pepperoni"> Pepperoni
+                </div>
                 <div class="">
-                  <ul>
-                    <li>Pepperoni</li>
-                    <li>Mushrooms</li>
-                  </ul>
+                  <input type="checkbox" name="pepperoni" value="pepperoni"> Mushrooms
                 </div>
-              </div>
-              <div class="horizontalRule"></div>
-              <div class="">
-                Order Total: $10.99
               </div> -->
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div id="orderSummaryContainer" class="container-summary">
+              <p class="section-title">Order Summary</p>
+              <div id="pizzaOrder">
+                <!-- <p>Pizza: 1</p>
+                <div>
+                  Type: Supreme
+                </div>
+                <div class="">
+                  Size: Large
+                </div>
+                <div>
+                  Toppings:
+                  <div class="">
+                    <ul>
+                      <li>Pepperoni</li>
+                      <li>Mushrooms</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="horizontalRule"></div>
+                <div class="">
+                  Order Total: $10.99
+                </div> -->
+              </div>
             </div>
           </div>
         </div>
