@@ -26,7 +26,7 @@ ContentPresentation.prototype.setPizzaSelectedEvents = function() {
   //adding click event handler to show the pizza customization option
   $("div.container-pizza-byo div.container-btn-size button").click(function(event) {
     var byoPizzaSize = $(event.target).attr("id").split(":")[2];
-    var pizza = new Pizza(["dough", "tomato sauce", "mozzarella"]);
+    var pizza = new Pizza(["tomato sauce", "mozzarella"]);
     pizza.name = "byo";
     pizza.description = "Build-Your-Own Pizza";
     pizza.imagePath = "img/CheesePizza.png";
@@ -49,7 +49,7 @@ ContentPresentation.prototype.setPizzaSelectedEvents = function() {
     pizza.imagePath = signaturePizza.imagePath;
     orderTracker.trackPizzaOrder(pizza, signaturePizzaSize);
 
-    console.log(orderTracker);
+    // console.log(orderTracker);
     contentPresentation.showPizzaCustomizationOptions();
   });
 }
@@ -57,6 +57,14 @@ ContentPresentation.prototype.setPizzaSelectedEvents = function() {
 ContentPresentation.prototype.setPizzaCustomizationEvents = function() {
   var contentPresentation = this;
   var orderTracker = this.pizzeria.orderTracker;
+
+  // When a topping/ingredient is added or removed, we have to update
+  // the pizza for the current order.
+  $("#pizzaIngredients input[type='checkbox']").change(function() {
+    var ingredient = this.value;
+    var isSelected = this.checked;
+    orderTracker.currentOrder.pizza.addOrRemoveIngredient(ingredient, isSelected);
+  });
 
   //adding click event handler to show the pizza customization option
   $("#orderButton").click(function(event) {

@@ -31,7 +31,7 @@ Pizzeria.prototype.getPizzaByName = function(pizzas, name) {
 
 Pizzeria.prototype.getSignaturePizzas = function() {
   var supreme = new Pizza(
-    ["dough", "tomato sauce", "mozzarella", "sausage", "bell peppers", "onions", "black olives"]
+    ["tomato sauce", "mozzarella", "sausage", "bell peppers", "onions", "black olives"]
   );
 
   supreme.name = "supreme";
@@ -39,7 +39,7 @@ Pizzeria.prototype.getSignaturePizzas = function() {
   supreme.imagePath = "img/SupremePizza.png";
 
   var hawaiian = new Pizza(
-    ["dough", "tomato sauce", "mozzarella", "ham", "pineapple"]
+    ["tomato sauce", "mozzarella", "ham", "pineapple"]
   );
 
   hawaiian.name = "hawaiian";
@@ -47,7 +47,7 @@ Pizzeria.prototype.getSignaturePizzas = function() {
   hawaiian.imagePath = "img/HawaiianPizza.png";
 
   var pepperoni = new Pizza(
-    ["dough", "tomato sauce", "mozzarella", "pepperoni"]
+    ["tomato sauce", "mozzarella", "pepperoni"]
   );
 
   pepperoni.name = "pepperoni";
@@ -55,7 +55,7 @@ Pizzeria.prototype.getSignaturePizzas = function() {
   pepperoni.imagePath = "img/PepperoniPizza.png";
 
   var fourCheese = new Pizza(
-    ["dough", "tomato sauce", "mozzarella", "3 cheese"]
+    ["tomato sauce", "mozzarella", "3 cheese"]
   );
 
   fourCheese.name = "fourCheese";
@@ -69,7 +69,6 @@ Pizzeria.prototype.getSignaturePizzas = function() {
 
 Pizzeria.prototype.initialize = function() {
   this.ingredients = [
-    "dough",
     "tomato sauce",
     "cream sauce",
     "pepperoni",
@@ -99,6 +98,31 @@ function Pizza(ingredients) {
   this.imagePath;
 }
 
+Pizza.prototype.addOrRemoveIngredient = function(ingredient, add) {
+  var indexOfIngredient = -1;
+  for (var i = 0; i < this.ingredients.length; i++) {
+    if (this.ingredients[i].toLowerCase() == ingredient.toLowerCase()) {
+      indexOfIngredient = i;
+      break;
+    }
+  }
+
+  // When the ingredient index (in the array) is greater than or equal to 0, it means that
+  // the ingredient is 'found' or already exists in the array.
+  var ingredientFound = indexOfIngredient >= 0;
+
+  if (add && !ingredientFound) {
+    // If we are adding the ingredient and it does not already exist in the
+    // ingredients array, then we add it to the array.
+    this.ingredients.push(ingredient);
+  }
+  else if (!add && ingredientFound) {
+    // If we are removing the ingredient and it already exists in the
+    // ingredients array, then we go ahead and remove/delete it from the array.
+    delete this.ingredients[indexOfIngredient];
+  }
+}
+
 Pizza.prototype.getIngredientsPrice = function(size) {
   var price = 0;
   var ingredientsWithCost = [
@@ -118,10 +142,10 @@ Pizza.prototype.getIngredientsPrice = function(size) {
     var hasPrice = ingredientsWithCost.includes(ingredient);
 
     if (hasPrice) {
-      if (size == "small") {
+      if (size == "S") {
         price += 0.5;
       }
-      else if (size == "medium") {
+      else if (size == "M") {
         price += 0.75;
       }
       else {
@@ -135,22 +159,22 @@ Pizza.prototype.getIngredientsPrice = function(size) {
 Pizza.prototype.getPrice = function(size) {
   var price = 0;
   if (this.isSignature()) {
-    if (size == "small") {
-      price = 10.99;
+    if (size == "S") {
+      price = 7.99;
     }
-    else if (size == "medium") {
-      price = 12.99;
+    else if (size == "M") {
+      price = 9.99;
     }
     else {
-      price = 14.99;
+      price = 11.99;
     }
   }
   else {
     var ingredientsPrice = this.getIngredientsPrice(size);
-    if (size == "small") {
+    if (size == "S") {
       price = 7.99 + ingredientsPrice;
     }
-    else if (size == "medium") {
+    else if (size == "M") {
       price = 9.99 + ingredientsPrice;
     }
     else {
