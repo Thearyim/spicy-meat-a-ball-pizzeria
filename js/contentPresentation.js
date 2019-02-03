@@ -2,6 +2,21 @@ function ContentPresentation(pizzeria) {
   this.pizzeria = pizzeria;
 }
 
+ContentPresentation.prototype.setPizzaToppings = function() {
+  var pizzeria = this.pizzeria;
+  var orderTracker = this.pizzeria.orderTracker;
+
+  orderTracker.currentOrder.pizza.ingredients.forEach(function(ingredient) {
+    var pizzaIngredients = $("#pizzaIngredients div > input");
+    for (var i = 0; i < pizzaIngredients.length; i++) {
+      var thisIngredient = pizzaIngredients[i];
+      if (thisIngredient.value == ingredient) {
+        $(thisIngredient).prop("checked", true);
+      }
+    }
+  });
+}
+
 ContentPresentation.prototype.setPizzaSelectedEvents = function() {
   var pizzeria = this.pizzeria;
   var signaturePizzas = this.pizzeria.getSignaturePizzas();
@@ -73,6 +88,7 @@ ContentPresentation.prototype.showSignaturePizzas = function() {
 ContentPresentation.prototype.showPizzaCustomizationOptions = function() {
   var allIngredients = this.pizzeria.ingredients;
   var contentPresentation = this;
+  var orderTracker = this.pizzeria.orderTracker;
 
   var htmlContent = "";
   allIngredients.forEach(function(ingredient) {
@@ -88,9 +104,12 @@ ContentPresentation.prototype.showPizzaCustomizationOptions = function() {
   </div>`;
 
   $("#pizzaIngredients").html(htmlContent);
+  $("#pizzaCustomizationContainer div img.img-pizza").attr("src", orderTracker.currentOrder.pizza.imagePath);
   $("#pizzaCustomizationContainer").show();
   $("#orderSummaryContainer").hide();
   $("#pizzaMenuContainer").hide();
+
+  contentPresentation.setPizzaToppings();
 
   //adding click event handler to show the pizza customization option
   $("#pizzaIngredients div > button").click(function(event) {
